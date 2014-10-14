@@ -46,21 +46,35 @@ def runCheck():
 
 
 def quitarPass():
-	## Mover CMD.EXE a SETHC.EXE
-	print('MODIFICACIONES REALIZADAS CON EXITO, ARRANQUE CON WINDOWS Y PRESIONE 5 VECES "SHIFT", EN LA CONSOLA TECLEE "control userpasswords2" PARA SETEAR LA NUEVA CONTRASEÑA.')
+	try:
+		print('--> Intentando montar partición de Windows en /mnt...\n')
+		os.system('mount /dev/sda2 /mnt')
+		print('--> Partición de Windows (sda2) montada correctamente.\n')
+		os.system('mv /mnt/Windows/System32/sethc.exe /mnt/Windows/System32/sethc.exe-BAK')
+		os.system('cp /mnt/Windows/System32/cmd.exe /mnt/Windows/System32/sethc.exe')
+		print('--> Los archivos correspondientes de modificaron correctamente.\n')
+		print('>>> Ya puede arrancar el SO Windows y al momento de iniciar sesión, presione 5 veces la tecla Mayus. En la Terminal CMD teclee lo siguiente:\n')
+		print('# control userpasswords2\n')
+	except:
+		print('>> ERROR. No fue posible modificar los archivos necesarios.')
 	print('\n>> Presione ENTER para continuar... \n')
 	input()
 	os.system('clear')
 	menu()
+
+
+
+
+	## Mover CMD.EXE a SETHC.EXE
+	print('MODIFICACIONES REALIZADAS CON EXITO, ARRANQUE CON WINDOWS Y PRESIONE 5 VECES "SHIFT", EN LA CONSOLA TECLEE "control userpasswords2" PARA SETEAR LA NUEVA CONTRASEÑA.')
 	
 
 def menu():
-	print('################# NETBOOK RECOVERY TOOL#################')
-	print()
+	print('################# NETBOOK RECOVERY TOOL#################\n')
 	print('\t1. Reparar imágen GRUB.')
 	print('\t2. Reparar arranque de Partición de Recuperación.')
 	print ('\t3. Verificar integridad de Partición de Recuperación.')
-	print('\t4. Quitar contraseña Windows 7.')
+	print('\t4. Preparar restauración de contraseña de Windows 7.')
 	print('\t0. Salir')
 	print('\tR. Reiniciar')
 	print()
