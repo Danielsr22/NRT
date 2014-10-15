@@ -1,4 +1,5 @@
 #!/bin/python
+# -*- coding: utf-8 -*-
 
 import os
 
@@ -12,7 +13,6 @@ def repararMBR():
 		print('>> ERROR. No se pudo escribir la imágen de MBR al disco.\n')
 	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
-	menu()
 
 def repararGRUB():
 	try:
@@ -26,7 +26,6 @@ def repararGRUB():
 		print('>> ERROR. No se pudo copiar la configuración del GRUB al directorio destino.')
 	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
-	menu()
 
 
 def runCheck():
@@ -38,7 +37,6 @@ def runCheck():
 		print('>> ERROR. No se pudo realizar la verificación del sistema de archivos.')
 	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
-	menu()
 	
 
 
@@ -57,7 +55,6 @@ def quitarPass():
 		print('>> ERROR. No fue posible modificar los archivos necesarios.')
 	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
-	menu()
 
 def verifReboot():
 	resp = input('\n>>> Está seuro de que desea reinciar?: [s/n]:')
@@ -100,7 +97,7 @@ def menu():
 		else:
 			print('>> ERROR. El carácter ingresado no es una opción válida.')
 			os.system('clear')
-			menu()
+		menu()
 	## Si ingresa 0, termina el programa.
 	if (op == '0'):
 		input('>> Presione una tecla para salir...')
