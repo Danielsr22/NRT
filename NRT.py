@@ -5,7 +5,7 @@ import os
 def repararMBR():
 	try:
 		print('>> Intentando restaurar el MBR del disco, aguarde un momento...\n')
-		print('os.system(dd if=iso/grub-n201.iso of=/dev/sda bs=512 count=1)')
+		os.system('dd if=iso/grub-n201.iso of=/dev/sda bs=512 count=1')
 		print()
 		print('>> La imágen de GRUB se ha restaurado correctamente.')
 	except:
@@ -17,11 +17,11 @@ def repararMBR():
 
 def repararGRUB():
 	try:
-		print('os.system(mount /dev/sda1 /mnt)')
+		os.system('mount /dev/sda1 /mnt')
 		print('\n--> Creando backup de la configuración actual del GRUB...')
-		print('os.system(mv /mnt/boot/grub/grub.cfg /mnt/boot/grub/grub.cfg-BAK)')
+		os.system('mv /mnt/boot/grub/grub.cfg /mnt/boot/grub/grub.cfg-BAK')
 		print('\n--> Copiando archivo de configuración nuevo...')
-		print('os.system(cp src/grub.cfg /mnt/boot/grub/)')
+		os.system('cp src/grub.cfg /mnt/boot/grub/')
 		print('\n>> Se restauraron correctamente los parámetros de arranque del GRUB.')
 	except:
 		print('>> ERROR. No se pudo copiar la configuración del GRUB al directorio destino.')
@@ -34,7 +34,7 @@ def repararGRUB():
 def runCheck():
 	try: ## VERIFICAR CON FSCK PARTICION DE RECU
 		print('>> Chequeando integridad de la partción re recuperación...')
-		print('os.system(fsck -a /dev/sda5)')
+		os.system('fsck -a /dev/sda5')
 		print('\n >> El sistema de archivos ha sido reparado.')
 	except:
 		print('>> ERROR. No se pudo realizar la verificación del sistema de archivos.')
@@ -51,6 +51,7 @@ def quitarPass():
 		os.system('mount /dev/sda2 /mnt')
 		print('--> Partición de Windows (sda2) montada correctamente.\n')
 		os.system('mv /mnt/Windows/System32/sethc.exe /mnt/Windows/System32/sethc.exe-BAK')
+		print('--> Backup de "sethc.exe" creado correctamente.\n')
 		os.system('cp /mnt/Windows/System32/cmd.exe /mnt/Windows/System32/sethc.exe')
 		print('--> Los archivos correspondientes de modificaron correctamente.\n')
 		print('>>> Ya puede arrancar el SO Windows y al momento de iniciar sesión, presione 5 veces la tecla Mayus. En la Terminal CMD teclee lo siguiente:\n')
@@ -62,12 +63,6 @@ def quitarPass():
 	os.system('clear')
 	menu()
 
-
-
-
-	## Mover CMD.EXE a SETHC.EXE
-	print('MODIFICACIONES REALIZADAS CON EXITO, ARRANQUE CON WINDOWS Y PRESIONE 5 VECES "SHIFT", EN LA CONSOLA TECLEE "control userpasswords2" PARA SETEAR LA NUEVA CONTRASEÑA.')
-	
 
 def menu():
 	print('################# NETBOOK RECOVERY TOOL#################\n')
