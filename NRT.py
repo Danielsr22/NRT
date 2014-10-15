@@ -74,8 +74,8 @@ def reboot():
 
 def menu():
 	print('################# NETBOOK RECOVERY TOOL#################\n')
-	print('\t1. Reparar imágen GRUB.')
-	print('\t2. Reparar arranque de Partición de Recuperación.')
+	print('\t1. Reparar imágen MBR.')
+	print('\t2. Restaurar configuración de GRUB.')
 	print ('\t3. Verificar integridad de Partición de Recuperación.')
 	print('\t4. Preparar restauración de contraseña de Windows 7.')
 	print('\t0. Salir')
