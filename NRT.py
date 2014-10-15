@@ -10,8 +10,7 @@ def repararMBR():
 		print('>> La imágen de GRUB se ha restaurado correctamente.')
 	except:
 		print('>> ERROR. No se pudo escribir la imágen de MBR al disco.\n')
-	print('\n>> Presione ENTER para continuar... \n')
-	input()
+	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
 	menu()
 
@@ -25,8 +24,7 @@ def repararGRUB():
 		print('\n>> Se restauraron correctamente los parámetros de arranque del GRUB.')
 	except:
 		print('>> ERROR. No se pudo copiar la configuración del GRUB al directorio destino.')
-	print('\n>> Presione ENTER para continuar... \n')
-	input()
+	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
 	menu()
 
@@ -38,8 +36,7 @@ def runCheck():
 		print('\n >> El sistema de archivos ha sido reparado.')
 	except:
 		print('>> ERROR. No se pudo realizar la verificación del sistema de archivos.')
-	print('\n>> Presione ENTER para continuar... \n')
-	input()
+	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
 	menu()
 	
@@ -58,10 +55,24 @@ def quitarPass():
 		print('# control userpasswords2\n')
 	except:
 		print('>> ERROR. No fue posible modificar los archivos necesarios.')
-	print('\n>> Presione ENTER para continuar... \n')
-	input()
+	input('\n>> Presione ENTER para continuar... \n')
 	os.system('clear')
 	menu()
+
+def verifReboot():
+	resp = input('\n>>> Está seuro de que desea reinciar?: [s/n]:')
+	resp = resp.lower()
+	if (resp == 's'):
+		return True
+	elif (resp == 'n'):
+		return False
+	else:
+		print('>>> ERROR, El caracter ingresado no es válido, intente nuevamente...')
+		verifReboot()
+
+def reboot():
+	input('>>> Presione ENTER para reinicir el sistema...')
+	os.system('reboot')
 
 
 def menu():
@@ -94,10 +105,7 @@ def menu():
 	if (op == '0'):
 		input('>> Presione una tecla para salir...')
 	if (op == 'R') | (op == 'r'):
-		input('>> Presione ENTER para reinicar el equipo...')
-		print('os.system(reboot)')
-
-
+		reboot(verifReboot())
 
 
 ## Programa principal
