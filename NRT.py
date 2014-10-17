@@ -72,28 +72,35 @@ def reboot():
 	os.system('reboot')
 
 
+def fun():
+	input('TEST FUN, VUELVE')
+	os.system('clear')
+
 def menu():
 	print('################# NETBOOK RECOVERY TOOL#################\n')
-	print('\t1. Reparar imágen MBR.')
+	print('\t1. Reparar imágen MBR de /dev/sda.')
 	print('\t2. Restaurar configuración de GRUB.')
 	print ('\t3. Verificar integridad de Partición de Recuperación.')
 	print('\t4. Preparar restauración de contraseña de Windows 7.')
 	print('\t0. Salir')
 	print('\tR. Reiniciar')
-	print()
+	print('\t t. test')
 	option = str(input('>> Opcion deseada: '))
 
-	while (option != 0):
+	while (option != '0'):
 		## Evaluo las opciones
 		print()
 		if (option == '1'):
 			repararMBR()
-		elif (op == '2'):
+		elif (option == '2'):
 			repararGRUB()
 		elif (option == '3'):
 			runCheck()
 		elif (option == '4'):
 			quitarPass()
+		elif (option == 't'):
+			print ('TEST OK')
+			fun()
 		else:
 			print('>> ERROR. El carácter ingresado no es una opción válida.')
 			os.system('clear')
@@ -110,9 +117,9 @@ def menu():
 
 
 	## Si ingresa 0, termina el programa.
-	if (op == '0'):
+	if (option == '0'):
 		input('>> Presione una tecla para salir...')
-	if (op == 'R') | (op == 'r'):
+	if (option == 'R') | (option == 'r'):
 		reboot(verifReboot())
 
 
