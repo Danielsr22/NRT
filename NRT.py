@@ -81,23 +81,34 @@ def menu():
 	print('\t0. Salir')
 	print('\tR. Reiniciar')
 	print()
-	op = str(input('>> Opcion deseada: '))
-	print()
+	option = str(input('>> Opcion deseada: '))
 
-	## Testeo las opciones
-	if (op != '0'):
-		if (op == '1'):
+	while (option != 0):
+		## Evaluo las opciones
+		print()
+		if (option == '1'):
 			repararMBR()
 		elif (op == '2'):
 			repararGRUB()
-		elif (op == '3'):
+		elif (option == '3'):
 			runCheck()
-		elif (op == '4'):
+		elif (option == '4'):
 			quitarPass()
 		else:
 			print('>> ERROR. El carácter ingresado no es una opción válida.')
 			os.system('clear')
-		menu()
+
+		print('################# NETBOOK RECOVERY TOOL#################\n')
+		print('\t1. Reparar imágen MBR.')
+		print('\t2. Restaurar configuración de GRUB.')
+		print ('\t3. Verificar integridad de Partición de Recuperación.')
+		print('\t4. Preparar restauración de contraseña de Windows 7.')
+		print('\t0. Salir')
+		print('\tR. Reiniciar')
+		print()
+		option = str(input('>> Opcion deseada: '))
+
+
 	## Si ingresa 0, termina el programa.
 	if (op == '0'):
 		input('>> Presione una tecla para salir...')
