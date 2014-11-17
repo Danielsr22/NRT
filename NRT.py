@@ -6,7 +6,7 @@ from os import system
 def repararMBR():
 	try:
 		print('>> Intentando restaurar el MBR del disco, aguarde un momento...\n')
-		system('dd if=iso/grub-n201.iso of=/dev/sda bs=512 count=1 &> /dev/null/')
+		system('dd if=iso/grub-n201.iso of=/dev/sda bs=512 count=1 &> /dev/null')
 		print()
 		print('>> La imágen de GRUB se ha restaurado correctamente.')
 	except:
@@ -229,21 +229,22 @@ def selectModel():
 	option = str(input('\n>> Opción deseada: '))
 	option = option.lower()
 
+	seguridad = evalSeguridad()
 	while (option != 'q'):
 		if( option == '1'):
-			if (evalSeguridad() == True):
+			if (seguridad== True):
 				model = str(2013)
 				menu(model)
 			else:
 				input('\n>> Presione ENTER y seleccione el modelo correcto...')
 				system('clear')
 		elif (option == '2'):
-				if (evalSeguridad() == True):
-					model = str(2014)
-					menu(model)
-				else:
-					input('\n>> Presione ENTER y seleccione el modelo correcto...')
-					system('clear')
+			if (seguridad == True):
+				model = str(2014)
+				menu(model)
+			else:
+				input('\n>> Presione ENTER y seleccione el modelo correcto...')
+				system('clear')
 		elif (option == 't'):
 			print('>> TEST OK')
 			fun()
