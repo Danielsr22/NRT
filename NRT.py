@@ -115,6 +115,35 @@ def evalSeguridad():
 			resp = str(input('\n>> Sólo puede responder con "s" o "n", inténtelo nuevamente: '))
 			resp = resp.lower()
 
+def iniciarRecu(model):
+	try:	
+		if (model == '2013'):
+			print('--> Montando partición de Recuperación (sda5) en /mnt.')
+			system('mount /dev/sda5 /mnt/')
+			print('--> Montando directorio /proc/ local en /mnt/proc/')
+			system('mount --bind /proc /mnt/proc/')
+			print('--> Montando directorio /dev/ local en /mnt/dev/')
+			system('mount --bind /dev/ /mnt/dev/')
+			print('--> Montando directorio /dev/pts/ local en /dev/pts/')
+			system('mount --bind /dev/pts/ /mnt/dev/pts/')
+			print('--> Montando directorio /sys/ local en /mnt/sys/')
+			system('mount --bind /sys/ /mnt/sys/')
+		
+		### MODELO 2014
+		else:
+			print('--> Montando partición de Recuperación (sda6) en /mnt.')
+			system('mount /dev/sda6 /mnt/')
+			print('--> Montando directorio /proc/ local en /mnt/proc/')
+			system('mount --bind /proc /mnt/proc/')
+			print('--> Montando directorio /dev/ local en /mnt/dev/')
+			system('mount --bind /dev/ /mnt/dev/')
+			print('--> Montando directorio /dev/pts/ local en /dev/pts/')
+			system('mount --bind /dev/pts/ /mnt/dev/pts/')
+			print('--> Montando directorio /sys/ local en /mnt/sys/')
+			system('mount --bind /sys/ /mnt/sys/')
+	except:
+		print('>> ERROR al montar los sistemas de archivos. No se puede iniciar la recuperación.')
+
 
 def quitarCargador():
 	try:
@@ -129,7 +158,7 @@ def quitarCargador():
 		system('umount /dev/sda6')
 		print('--> Partición desmontada correctamente')
 	except:
-		print('>> ERROR. No fue posible modificar los archivos necesari')
+		print('>> ERROR. No fue posible modificar los archivos necesarios.')
 	input('\n>> Presione ENTER para continuar... \n')
 	system('clear')
 	return
@@ -145,6 +174,7 @@ def menu(model):
 		print('\t2. Restaurar configuración de GRUB.')
 		print ('\t3. Verificar integridad de Partición de Recuperación.')
 		print('\t4. Preparar reseteo de contraseña de Windows 7.')
+		print('\t5. Iniciar restauración de Sistemas Operativos.')
 		print('\t0. Menú anterior')
 		print('\tR. Reiniciar')
 		print('\tt. test')
@@ -161,6 +191,8 @@ def menu(model):
 				runCheck()
 			elif (option == '4'):
 				quitarPass(model)
+			elif (option == '5'):
+				iniciarRecu(model)
 			elif (option == 't'):
 				print ('TEST OK')
 				fun()
@@ -176,6 +208,7 @@ def menu(model):
 			print('\t2. Restaurar configuración de GRUB.')
 			print ('\t3. Verificar integridad de Partición de Recuperación.')
 			print('\t4. Preparar restauración de contraseña de Windows 7.')
+			print('\t5. Iniciar restauración de Sistemas Operativos.')
 			print('\t0. Menú anterior.')
 			print('\tR. Reiniciar')
 			option = str(input('\n>> Opcion deseada: '))
@@ -186,6 +219,7 @@ def menu(model):
 		print('################## NETBOOK MODELO 2014 ##################\n')
 		print('\t1. Preparar reseteo de contraseña de Windows 8.1.')
 		print('\t2. Quitar verificación de cargador en sistema de restauración.')
+		print('\t3. Iniciar restauración de Sistemas Operativos.')
 		print('\t0. Menú anterior')
 		print('\tR. Reiniciar')
 		option = str(input('\n>> Opcion deseada: '))
@@ -197,6 +231,8 @@ def menu(model):
 				quitarPass(model)
 			elif (option == '2'):
 				quitarCargador()
+			elif (option == '3'):
+				iniciarRecu(model)
 			elif (option == 't'):
 				print ('TEST OK')
 				fun()
@@ -208,6 +244,8 @@ def menu(model):
 
 			print('################# NETBOOK RECOVERY TOOL#################\n')
 			print('\t1. Preparar reseteo de contraseña de Windows 8.1')
+			print('\t2. Quitar verificación de cargador en sistema de restauración.')
+			print('\t3. Iniciar restauración de Sistemas Operativos.')
 			print('\t0. Menú anterior.')
 			print('\tR. Reiniciar')
 			option = str(input('\n>> Opcion deseada: '))
